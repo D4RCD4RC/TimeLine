@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto&display=swap');
+/*Iniciamos con una pantalla de 320px*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body{    
+    background: url("http://source.unsplash.com/random?write");
+    
+}
+
+main{   
+    height: 100%;
+    width: 350px;    
+    margin: 10px 15px;
+    border-left: 2px solid rgb(255, 255, 255);
+    padding: 0 20px 0 20px;
+    color: aliceblue;   
+}
+
+section{    
+    background: rgba(97, 88, 88, 0.678);
+    border-radius: 10px;    
+    border: 1px solid rgba(255, 255, 255, 0.144);
+    line-height: 1.5;
+    position: relative;
+    height: 550px;
+    padding: 10px 25px;
+    margin-bottom: 20px;   
+}
+
+section p{
+    overflow-y: scroll;
+    height: 200px;
+     line-height: 1.3;   
+   
+}
+
+
+section h2:hover{
+    color: rgb(255, 0, 0);
+}
+
+img{
+    height: 150px;
+    margin: 10px auto;
+    display: block;
+    margin-bottom: 30px;
+}
+
+section::before{
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    border: 3px solid rgba(0, 0, 0, 0.534);
+    position: absolute;
+    top: 10px;
+    left: -30px
+}
+
+section::after{
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color:transparent rgb(255, 255, 255) transparent transparent;
+    border-width: 8px;    
+    position: absolute;
+    left: -17px;
+    top: 10px;
+}
+
+section h2{    
+    margin-left: -24px;
+    margin-top: -10px;
+    font-size: 2rem;
+}    
+
+header{
+    background-color: rgba(116, 116, 116, 0.658);
+}
+
+h1{       
+    color: rgb(255, 255, 255);
+   
+        height: 50px;
+        width: 400px;
+        /* background-color: #3d9970; */
+        
+        color: white;
+        padding: 2rem;
+        animation: shimmy 3s infinite;
+        animation-direction: alternate;
+      }      
+      @keyframes shimmy {
+        100% {
+          transform: translate(10px, 10px);    
+        }
+        100% {
+          transform: translate(70px, 0px);
+        }
+      }
+
+h3{
+    text-align: center;
+}
+
+footer{
+    background-color: rgba(116, 116, 116, 0.658);
+    color: white;
+    padding: 1rem;
+    text-align: right;
+}
+/* 
+/*Version hasta 400px*/
+@media (min-width: 400px) {
+main{
+    width: 95%;
+    margin: 15px;
+}
+}
+
+/*Version hasta 500px */
+@media (min-width: 500px) {
+    main{
+        width: 95%;        
+    }
+    section{
+        height: 560px;
+    }
+    section h2{
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+    img{
+        height:200px;
+        margin-bottom: 10px;
+    }
+    h3{
+        font-size: 1.3rem;
+    }
+    p{
+        font-size: 1.1rem;
+    }
+}
+/*Version hasta 600px */
+@media (min-width: 600px) {
+    main{
+        width: 95%;   
+        margin: 15px 55px;     
+    }
+section{
+    max-width: 450px;
+}
+
+    section::before{
+       content: '⚔️'; 
+         font-size: 4rem;   
+        width: 100px;
+        height: 100px;        
+        display: flex;
+        justify-content: center;
+        align-items: center;          
+        border: 3px solid rgba(0, 0, 0, 0.534);
+        position: absolute;        
+        left: -125px
+    }
+
+    h1{
+        padding: 3.5rem;
+    }
+    
+    section{
+        width: 90%;
+        margin-left: 50px;
+    }
+    section::after{   
+        top: 50px;
+    }
+    section p{
+        font-size: 20px
+    }
+}
+/*Version hasta 700px */
+@media (min-width: 700px) {
+    main{
+        width: 95%;        
+        margin: 15px 100px;
+    }
+}
+
+/*Version hasta 800px */
+@media (min-width: 800px) {
+/*centrar el main en el body*/
+main{
+    margin: 10px auto;
+    margin-left: 30%;
+}
+/* centrar el section en el main*/
+section{
+    margin: 0 4%;
+    
+    position: relative;
+}
+section::before{
+    /*que no se mueva*/
+    position: absolute;
+ }
+
+}
+
+
+
+
+
+
