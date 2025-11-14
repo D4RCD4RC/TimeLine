@@ -1,221 +1,218 @@
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto&display=swap');
-/*Iniciamos con una pantalla de 320px*/
-*{
+/* ==========================================================================
+   Zelda Timeline — Rediseño hibrido (Medieval + Moderno)   
+   ========================================================================== */
+
+/* -------------------------
+   Fuentes
+------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto:wght@300;400;700&display=swap');
+
+/* -------------------------
+   Variables globales del tema
+------------------------- */
+:root {
+    --bg: #0c101b;
+    --bg2: #0f1a21;
+    --gold: #d6b24b;
+    --green: #1e7a2f;
+    --text: #f6f6f6;
+    --glass: rgba(255,255,255,0.06);
+    --card-border: rgba(255,255,255,0.1);
+    --shadow: 0 15px 35px rgba(0,0,0,0.6);
+    --radius: 14px;
+}
+
+/* -------------------------
+   Reset base
+------------------------- */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {    
     font-family: 'Roboto', sans-serif;
-}
-body{    
-    background: url("http://source.unsplash.com/random?write");
-    
-}
-
-main{   
-    height: 100%;
-    width: 350px;    
-    margin: 10px 15px;
-    border-left: 2px solid rgb(255, 255, 255);
-    padding: 0 20px 0 20px;
-    color: aliceblue;   
+    background: radial-gradient(circle at 20% 30%, rgba(30,122,47,0.05), transparent 40%),
+                linear-gradient(180deg, var(--bg), var(--bg2));
+    color: var(--text);
+    padding-bottom: 4rem;
 }
 
-section{    
-    background: rgba(97, 88, 88, 0.678);
-    border-radius: 10px;    
-    border: 1px solid rgba(255, 255, 255, 0.144);
-    line-height: 1.5;
-    position: relative;
-    height: 550px;
-    padding: 10px 25px;
-    margin-bottom: 20px;   
+/* ==========================================================================
+   HEADER
+========================================================================== */
+header {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 1.2rem 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-section p{
-    overflow-y: scroll;
-    height: 200px;
-     line-height: 1.3;   
-   
-}
-
-
-section h2:hover{
-    color: rgb(255, 0, 0);
-}
-
-img{
-    height: 150px;
-    margin: 10px auto;
-    display: block;
-    margin-bottom: 30px;
-}
-
-section::before{
-    content: '';
-    display: block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: rgb(255, 255, 255);
-    border: 3px solid rgba(0, 0, 0, 0.534);
-    position: absolute;
-    top: 10px;
-    left: -30px
-}
-
-section::after{
-    content: '';
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-color:transparent rgb(255, 255, 255) transparent transparent;
-    border-width: 8px;    
-    position: absolute;
-    left: -17px;
-    top: 10px;
-}
-
-section h2{    
-    margin-left: -24px;
-    margin-top: -10px;
-    font-size: 2rem;
-}    
-
-header{
-    background-color: rgba(116, 116, 116, 0.658);
-}
-
-h1{       
-    color: rgb(255, 255, 255);
-   
-        height: 50px;
-        width: 400px;
-        /* background-color: #3d9970; */
-        
-        color: white;
-        padding: 2rem;
-        animation: shimmy 3s infinite;
-        animation-direction: alternate;
-      }      
-      @keyframes shimmy {
-        100% {
-          transform: translate(10px, 10px);    
-        }
-        100% {
-          transform: translate(70px, 0px);
-        }
-      }
-
-h3{
+h1 {
+    font-family: 'Audiowide';
     text-align: center;
+    color: var(--gold);
+    font-size: 2rem;
+
+    text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    letter-spacing: 2px;
+
+    animation: glow 3s infinite alternate;
 }
 
-footer{
-    background-color: rgba(116, 116, 116, 0.658);
-    color: white;
-    padding: 1rem;
-    text-align: right;
-}
-/* 
-/*Version hasta 400px*/
-@media (min-width: 400px) {
-main{
-    width: 95%;
-    margin: 15px;
-}
+@keyframes glow {
+    0% { text-shadow: 0 5px 15px rgba(214,178,75,0.4); }
+    100% { text-shadow: 0 5px 20px rgba(214,178,75,0.9); }
 }
 
-/*Version hasta 500px */
-@media (min-width: 500px) {
-    main{
-        width: 95%;        
-    }
-    section{
-        height: 560px;
-    }
-    section h2{
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-    }
-    img{
-        height:200px;
-        margin-bottom: 10px;
-    }
-    h3{
-        font-size: 1.3rem;
-    }
-    p{
-        font-size: 1.1rem;
-    }
-}
-/*Version hasta 600px */
-@media (min-width: 600px) {
-    main{
-        width: 95%;   
-        margin: 15px 55px;     
-    }
-section{
-    max-width: 450px;
-}
+/* ==========================================================================
+   MAIN (contiene el timeline)
+========================================================================== */
 
-    section::before{
-       content: '⚔️'; 
-         font-size: 4rem;   
-        width: 100px;
-        height: 100px;        
-        display: flex;
-        justify-content: center;
-        align-items: center;          
-        border: 3px solid rgba(0, 0, 0, 0.534);
-        position: absolute;        
-        left: -125px
-    }
-
-    h1{
-        padding: 3.5rem;
-    }
-    
-    section{
-        width: 90%;
-        margin-left: 50px;
-    }
-    section::after{   
-        top: 50px;
-    }
-    section p{
-        font-size: 20px
-    }
-}
-/*Version hasta 700px */
-@media (min-width: 700px) {
-    main{
-        width: 95%;        
-        margin: 15px 100px;
-    }
-}
-
-/*Version hasta 800px */
-@media (min-width: 800px) {
-/*centrar el main en el body*/
-main{
-    margin: 10px auto;
-    margin-left: 30%;
-}
-/* centrar el section en el main*/
-section{
-    margin: 0 4%;
-    
+main {
+    width: 90%;
+    max-width: 600px;
+    margin: 2rem auto;
+    border-left: 3px solid rgba(214,178,75,0.5);
+    padding-left: 40px;
     position: relative;
 }
-section::before{
-    /*que no se mueva*/
-    position: absolute;
- }
 
+/* línea del timeline decorativa */
+main::before {
+    content: "";
+    position: absolute;
+    left: -3px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(var(--gold), var(--green));
+    opacity: 0.18;
 }
 
+/* ==========================================================================
+   SECTION — Cada evento del timeline
+========================================================================== */
 
+section {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
 
+    position: relative;
+    overflow: hidden;
+}
 
+/* PUNTO DEL TIMELINE */
+section::before {
+    content: "⚔️";
+    position: absolute;
+    left: -60px;
+    top: 20px;
 
+    width: 50px;
+    height: 50px;
 
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
+
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.6rem;
+    color: var(--gold);
+
+    box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+}
+
+/* FLECHA */
+section::after {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 26px;
+    border-style: solid;
+    border-width: 7px;
+    border-color: transparent rgba(255,255,255,0.4) transparent transparent;
+}
+
+/* Títulos */
+section h2 {
+    font-family: "Audiowide";
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem;
+    margin-left: 0;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.6);
+}
+
+section h3 {
+    text-align: center;
+    color: var(--green);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Imagen */
+img {
+    display: block;
+    width: 90%;
+    max-width: 360px;
+    margin: 1rem auto;
+    border-radius: var(--radius);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+    object-fit: cover;
+}
+
+/* Texto */
+section p {
+    color: rgba(240,240,240,0.85);
+    line-height: 1.6;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+/* ==========================================================================
+   FOOTER
+========================================================================== */
+footer {
+    background: rgba(255,255,255,0.03);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 1.5rem 0;
+    backdrop-filter: blur(6px);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: 2rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+========================================================================== */
+
+@media (min-width: 700px) {
+    main {
+        width: 70%;
+    }
+}
+
+@media (min-width: 900px) {
+    main {
+        width: 55%;
+    }
+}
+
+@media (min-width: 1200px) {
+    main {
+        width: 45%;
+    }
+}

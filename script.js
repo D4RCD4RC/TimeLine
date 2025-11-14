@@ -1,56 +1,100 @@
 'use strict';
-const urlJson = './zelda-timeline.json';
 
-async function getData() {
-  const response = await fetch(urlJson);
+const URL_JSON = './zelda-timeline.json';
+
+/**
+ * Obtiene los datos del archivo JSON y los devuelve ordenados por fecha.
+ * @returns {Promise<Array>} Lista de objetos ordenados por fecha.
+ */
+const getData = async () => {
+  const response = await fetch(URL_JSON);
   const data = await response.json();
-  return data.sort((a, b) => {
-    return a.date - b.date;
+
+  // Ordena por el campo 'date' de menor a mayor
+  return data.sort((a, b) => a.date - b.date);
+};
+
+/**
+ * Crea un elemento HTML con contenido opcional y atributos.
+ * @param {string} tag - Tipo de elemento HTML a crear.
+ * @param {Object} options - Opciones de configuración del elemento.
+ * @returns {HTMLElement}
+ */
+const createElement = (tag, { text = '', attrs = {} } = {}) => {
+  const element = document.createElement(tag);
+  if (text) element.textContent = text;
+
+  // Asignar atributos si existen
+  Object.entries(attrs).forEach(([key, value]) => {
+    element.setAttribute(key, value);
   });
-}
 
-//crear un Header y un h1 en el body
-const header = document.createElement('header');
-const h1 = document.createElement('h1');
-h1.textContent = 'Zelda TimeLine';
-header.append(h1);
-document.body.append(header);
+  return element;
+};
 
-const main = document.createElement('main');
-document.body.append(main);
+/**
+ * Renderiza el header principal de la página.
+ */
+const renderHeader = () => {
+  const header = createElement('header');
+  const title = createElement('h1', { text: 'Zelda Timeline' });
 
-// crear un footer y dos p en el body
-const footer = document.createElement('footer');
-const p1 = document.createElement('p');
-p1.textContent = 'Daniel Rivas - 2022';
-const p2 = document.createElement('p');
-p2.textContent = 'danieriv@gmail.com';
-footer.append(p1, p2);
-document.body.append(footer);
+  header.append(title);
+  document.body.append(header);
+};
 
-//Generar secciones para cada objeto del arreglo
-function generarSecciones({ date, title, image, text }) {
-  const section = document.createElement('section');
-  const h2 = document.createElement('h2');
-  h2.textContent = date;
-  const h3 = document.createElement('h3');
-  h3.textContent = title;
-  const img = document.createElement('img');
-  img.setAttribute('src', image);
-  const p = document.createElement('p');
-  p.textContent = text;
+/**
+ * Renderiza el footer con la información del autor.
+ */
+const renderFooter = () => {
+  const footer = createElement('footer');
+  const author = createElement('p', { text: 'Daniel Rivas - 2022' });
+  const email = createElement('p', { text: 'danieriv@gmail.com' });
+
+  footer.append(author, email);
+  document.body.append(footer);
+};
+
+/**
+ * Genera la sección correspondiente a un elemento de la timeline.
+ * @param {Object} item - Datos del evento.
+ * @returns {HTMLElement} sección HTML.
+ */
+const createTimelineSection = ({ date, title, image, text }) => {
+  const section = createElement('section');
+
+  const h2 = createElement('h2', { text: date });
+  const h3 = createElement('h3', { text: title });
+  const img = createElement('img', { attrs: { src: image, alt: title } });
+  const p = createElement('p', { text });
 
   section.append(h2, h3, img, p);
   return section;
-}
+};
 
-//Añadir cada seccion al main
-async function appendSecciones() {
-  const chars = await getData();
+/**
+ * Obtiene los datos y añade cada sección al DOM dentro del elemento <main>.
+ */
+const renderTimeline = async () => {
+  const data = await getData();
+
+  const main = createElement('main');
   const fragment = document.createDocumentFragment();
-  for (const char of chars) {
-    fragment.append(generarSecciones(char));
-  }
+
+  data.forEach(item => fragment.append(createTimelineSection(item)));
+
   main.append(fragment);
-}
-appendSecciones();
+  document.body.append(main);
+};
+
+/**
+ * Inicializa la interfaz generando header, timeline y footer.
+ */
+const init = async () => {
+  renderHeader();
+  await renderTimeline();
+  renderFooter();
+};
+
+// Inicialización de la aplicación
+init();
